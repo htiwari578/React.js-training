@@ -1,0 +1,40 @@
+import React, { Component } from "react";
+class MyComp extends Component { 
+    state = {
+        students: [
+            {name: "John", maths:34,english:34},
+            {name: "Max", maths:54,english:34},
+            {name: "Eebel", maths:14,english:34},
+            {name: "Jhonny", maths:34,english:44},
+            {name: "Siri", maths:24,english:14}
+        ],
+    };
+    // show the row in green if total is at least 60 , otherwise red
+    getRowStyle = (marks1 , marks2) =>( marks1 + marks2 >=60 ? "bg-success" : "bg-danger");
+
+    render (){
+        // render the array 
+        let {students} = this.state;
+        return (
+            <div className = "container">
+                  <div className = "row border bg-dark text-white">
+                        <div className = "col-6 border">Name</div>
+                        <div className = "col-3 border text-center">Maths</div>
+                        <div className = "col-3 border text-center">English</div>
+
+                    </div>
+                {students.map((st)=> (
+                    <div className ={ "row border "+this.getRowStyle(st.maths,st.english)}>
+                        <div className = "col-6 border">{st.name}</div>
+                        <div className = "col-3 border text-center">{st.maths}</div>
+                        <div className = "col-3 border text-center">{st.english}</div>
+
+                    </div>
+                ))}
+                </div>
+        );
+
+        
+    }
+}
+export default MyComp;
